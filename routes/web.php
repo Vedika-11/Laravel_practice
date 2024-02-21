@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\IndexController;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,8 +13,22 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+use App\Models\{
+    User,Role,Permission
+};
 
 Route::get('/', function () {
+    // $admin =User::whereName('Admin')->first();
+    // $admin_role =Role::whereName('admin')->first();
+    // $admin->roles()->attach($admin_role);
+    // dd($admin->toArray());
+
+    // $add_user =Permission::where('name','add_user')->first();
+    // $admin_role =Role::whereName('admin')->first();
+    // $admin_role->permissions()->attach($add_user);
+    // dd($admin_role->permissions());
+
+ 
     return view('welcome');
 });
 
@@ -50,3 +65,5 @@ Route::get('/home/{name?}',function($name = null){
     return view('home')->with($data);
     
 });
+Route::get('/member',[IndexController::class,'index']);
+Route::get('/group',[IndexController::class,'group']);

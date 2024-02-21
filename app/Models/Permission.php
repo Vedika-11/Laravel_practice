@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Permission extends Model
 {
     use HasFactory;
+    protected $gaueded=[];
+    public function roles(){
+        return $this->belondsToMany(Role::class,'role_permissions');
+    }
+    
 }
