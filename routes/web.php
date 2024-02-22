@@ -2,6 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\DemoController;
+use App\Http\Controllers\SingleActionController;
+use App\Http\Controllers\PhotoResourceController;
+use App\Http\Controllers\StudentController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -17,16 +22,16 @@ use App\Models\{
     User,Role,Permission
 };
 
-Route::get('/', function () {
-    // $admin =User::whereName('Admin')->first();
-    // $admin_role =Role::whereName('admin')->first();
-    // $admin->roles()->attach($admin_role);
-    // dd($admin->toArray());
+Route::get('/role', function () {
+    $admin =User::whereName('Admin')->first();
+    $admin_role =Role::whereName('admin')->first();
+    $admin->roles()->attach($admin_role);
+    dd($admin->toArray());
 
-    // $add_user =Permission::where('name','add_user')->first();
-    // $admin_role =Role::whereName('admin')->first();
-    // $admin_role->permissions()->attach($add_user);
-    // dd($admin_role->permissions());
+    $add_user =Permission::where('name','add_user')->first();
+    $admin_role =Role::whereName('admin')->first();
+    $admin_role->permissions()->attach($add_user);
+    dd($admin_role->permissions());
 
  
     return view('welcome');
@@ -67,3 +72,16 @@ Route::get('/home/{name?}',function($name = null){
 });
 Route::get('/member',[IndexController::class,'index']);
 Route::get('/group',[IndexController::class,'group']);
+Route::get('/basic',[DemoController::class,'index']);
+Route::get('/singleaction',SingleActionController::class);
+Route::resource('/name',PhotoResourceController::class);
+Route::get('/show',[StudentController::class,'show']);
+Route::get('/condition',[StudentController::class,'condition']);
+Route::get('/select',[StudentController::class,'select']);
+Route::get('/column',[StudentController::class,'column_name_change']);
+Route::get('/distinct',[StudentController::class,'distinct']);
+Route::get('/orderby',[StudentController::class,'orderby']);
+Route::get('/limit',[StudentController::class,'limit']);
+
+
+
