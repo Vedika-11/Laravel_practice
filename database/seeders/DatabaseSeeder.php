@@ -5,6 +5,8 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\student;
+use App\Models\employe;
+use App\Models\city;
 
 
 class DatabaseSeeder extends Seeder
@@ -45,6 +47,8 @@ class DatabaseSeeder extends Seeder
         ]);
 
         student::factory()->count(5)->create();
+        employe::factory()->count(10)->create();
+        city::factory()->count(5)->create();
        
        
     }

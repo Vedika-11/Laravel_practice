@@ -6,6 +6,7 @@ use App\Http\Controllers\DemoController;
 use App\Http\Controllers\SingleActionController;
 use App\Http\Controllers\PhotoResourceController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\EmployeController;
 
 
 /*
@@ -75,13 +76,26 @@ Route::get('/group',[IndexController::class,'group']);
 Route::get('/basic',[DemoController::class,'index']);
 Route::get('/singleaction',SingleActionController::class);
 Route::resource('/name',PhotoResourceController::class);
-Route::get('/show',[StudentController::class,'show']);
-Route::get('/condition',[StudentController::class,'condition']);
-Route::get('/select',[StudentController::class,'select']);
-Route::get('/column',[StudentController::class,'column_name_change']);
-Route::get('/distinct',[StudentController::class,'distinct']);
-Route::get('/orderby',[StudentController::class,'orderby']);
-Route::get('/limit',[StudentController::class,'limit']);
+Route::controller(StudentController::class)->group(function(){
+Route::get('/show','show')->name('show');
+Route::get('/condition','condition');
+Route::get('/select','select');
+Route::get('/column','column_name_change');
+Route::get('/distinct','distinct');
+Route::get('/orderby','orderby');
+Route::get('/limit','limit');
+Route::get('/insert','insert');
+Route::get('/update','update');
+Route::get('/delete/{id}','delete');
+Route::post('forminsert','forminsert');
+});
+Route::view('form','/form');
+Route::get('/showemploye',[EmployeController::class,'showEmploye']);
+Route::get('/showemployewithcondition',[EmployeController::class,'showEmployeWithCondition']);
+Route::get('/methodcount',[EmployeController::class,'methodCount']);
+Route::get('/methodcountwithcondition',[EmployeController::class,'methodCountWithCondition']);
+Route::get('/grouping',[EmployeController::class,'grouping']);
+
 
 
 

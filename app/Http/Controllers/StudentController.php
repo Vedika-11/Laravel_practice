@@ -42,5 +42,55 @@ class StudentController extends Controller
         $students=DB::table('students')->limit(3)->get();
         return view('student',['data' => $students]);
     }
-    
+    public function insert(){
+        $students=DB::table('students')->insert([
+            'name'=>'nanny',
+            'email'=>'nanny@gmail.com',
+            'age'=>20,
+            'phone'=>5678904321,
+            'address'=>'f2,ghadftvg cvbnmrtyui 453278',
+            'created_at'=>now(),
+            'updated_at'=> now(),
+        ]);
+        if($students){
+            echo "<h1>Data successfully added!</h1>";
+        }
+    }
+    public function update(){
+        $students=DB::table('students')->where('id',2)->update(['age'=>21, 'phone'=>8987543216]);
+        if($students){
+            echo "<h1>Record Successfully updated!</h1>";
+        }
+        else{
+            echo "<h1>Record Not Updated!</h1>";
+        }
+    }
+    public function delete($id){
+        $students=DB::table('students')->where('id',$id)->delete();
+        if($students){
+            echo "<h1>Record Successfully deleted!</h1>";
+        }
+        else{
+            echo "<h1>Record Not deleted!</h1>";
+        }
+        
+    }
+    public function forminsert(Request $req){
+        $students=DB::table('students')->insert([
+            'name'=>$req->name,
+            'email'=>$req->email,
+            'age'=>$req->age,
+            'phone'=>$req->phone,
+            'address'=>$req->address,
+            'created_at'=>now(),
+            'updated_at'=> now(),
+        ]);
+        if($students){
+            return redirect()->route('show');
+        }
+        else{
+            echo "<h1>Data Not added!</h1>";
+        }
+        
+    }
 }
