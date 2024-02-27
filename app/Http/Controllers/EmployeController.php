@@ -55,4 +55,25 @@ class EmployeController extends Controller
         return $employes;
         
     }
+    public function leftjoin(){
+        $employes= DB::table('employes')
+                ->leftJoin('cities','employes.city','=','cities.id')
+                ->get();
+        return $employes;
+        
+    }
+    public function rightjoin(){
+        $employes= DB::table('cities')
+                ->rightJoin('employes','cities.id','=','employes.city')
+                ->get();
+        return $employes;
+        
+    }
+    public function crossjoin(){
+        $employes= DB::table('employes')
+                ->crossJoin('cities','employes.city','=','cities.id')
+                ->get();
+        return $employes;
+        
+    }
 }

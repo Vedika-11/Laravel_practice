@@ -7,6 +7,8 @@ use App\Http\Controllers\SingleActionController;
 use App\Http\Controllers\PhotoResourceController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\EmployeController;
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\TeacherController;
 
 
 /*
@@ -95,6 +97,17 @@ Route::get('/showemployewithcondition',[EmployeController::class,'showEmployeWit
 Route::get('/methodcount',[EmployeController::class,'methodCount']);
 Route::get('/methodcountwithcondition',[EmployeController::class,'methodCountWithCondition']);
 Route::get('/grouping',[EmployeController::class,'grouping']);
+Route::get('/leftjoin',[EmployeController::class,'leftjoin']);
+Route::get('/rightjoin',[EmployeController::class,'rightjoin']);
+Route::get('/crossjoin',[EmployeController::class,'crossjoin']);
+Route::get('/teacher',[TeacherController::class,'show'])->name('teacher.add');
+Route::post('/teacher',[TeacherController::class,'store'])->name('teacher.store');
+Route::get('/showteacher',[TeacherController::class,'index'])->name('teacher.show');
+Route::get('/conditionteacher',[TeacherController::class,'condition']);
+Route::get('/deleteteacher/{id?}',[TeacherController::class,'delete'])->name('teacher.delete');
+Route::get('/editteacher/{id?}',[TeacherController::class,'edit'])->name('teacher.edit');
+Route::post('/updateteacher/{id?}',[TeacherController::class,'update'])->name('teacher.update');
+
 
 
 
